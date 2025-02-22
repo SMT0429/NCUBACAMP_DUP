@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>80年代風格企管營</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 導覽列 -->
+    <nav class="navbar">
+        <div class="nav-brand">企管營2024</div>
+        <div class="nav-links">
+            <a href="#about">關於營隊</a>
+            <a href="#courses">課程介紹</a>
+            <a href="#gallery">活動回顧</a>
+            <a href="#contact">聯絡我們</a>
+        </div>
+    </nav>
+
+    <!-- Banner區域 -->
+    <header class="hero" data-aos="fade-up">
+        <div class="hero-content">
+            <h1>2024企管營</h1>
+            <p>踏上商業管理的時光之旅</p>
+            <button class="cta-button">立即報名</button>
+        </div>
+    </header>
+
+    <!-- 營隊介紹 -->
+    <section id="about" class="section" data-aos="fade-up">
+        <h2>關於企管營</h2>
+        <div class="about-content">
+            <p>在這裡放入營隊介紹文字...</p>
+        </div>
+    </section>
+
+    <!-- 課程介紹 -->
+    <section id="courses" class="section" data-aos="fade-up">
+        <h2>精彩課程</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <h3>商業策略</h3>
+                <p>學習企業策略規劃與決策...</p>
+            </div>
+            <!-- 可以繼續添加更多課程卡片 -->
+        </div>
+    </section>
+
+    <!-- 活動回顧 -->
+    <section id="gallery" class="section" data-aos="fade-up">
+        <h2>精彩回顧</h2>
+        <div class="gallery-grid">
+            <!-- 這裡可以放入圖片連結 -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>聯絡資訊</h3>
+                <p>Email: example@email.com</p>
+                <p>電話: 02-XXXX-XXXX</p>
+            </div>
+            <div class="footer-section">
+                <h3>關注我們</h3>
+                <div class="social-links">
+                    <!-- 社群媒體連結 -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 

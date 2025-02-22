@@ -1,0 +1,59 @@
+:root {
+    --neon-pink: #ff61ef;
+    --neon-blue: #61efff;
+    --dark-bg: #0a0a0a;
+}
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--dark-bg);
+    color: white;
+}
+
+/* 導覽列樣式 */
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+/* Banner樣式 */
+.hero {
+    height: 100vh;
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/static/images/grid.png');
+    opacity: 0.3;
+    animation: grid-move 20s linear infinite;
+}
+
+/* 動畫效果 */
+@keyframes grid-move {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+}
+
+/* 其他區段樣式 */
+.section {
+    padding: 5rem 2rem;
+}
+
+/* 更多樣式... */ 
