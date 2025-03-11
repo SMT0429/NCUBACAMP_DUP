@@ -1,59 +1,1537 @@
 :root {
-    --neon-pink: #ff61ef;
-    --neon-blue: #61efff;
-    --dark-bg: #0a0a0a;
+    --paper-color: #d4c4a0;  /* 更暗的紙張色 */
+    --paper-dark: #c4b48f;   /* 更暗的深色調 */
+    --text-color: #2c1810;
+    --accent-color: #8b4513;
+    --shadow-color: rgba(139, 69, 19, 0.3);
+    --cursive-font: 'Noto Serif', 'Playfair Display', serif;  /* 襯線字體 */
+    --handwriting-font: 'Noto Serif TC', 'Ma Shan Zheng', cursive;  /* 中文手寫字體 */
+    --text-font: 'Noto Sans TC', sans-serif;  /* 中文正文字體 */
 }
 
+/* 全局样式 */
 body {
     margin: 0;
-    font-family: 'Noto Sans TC', sans-serif;
-    background: var(--dark-bg);
-    color: white;
+    padding: 0;
+    font-family: var(--text-font);
+    background-color: var(--paper-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    /* 添加纸张纹理和褪色效果 */
+    background-image: 
+        /* 深色纸张纹理 */
+        url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
 }
 
-/* 導覽列樣式 */
-.navbar {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 1rem;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 导航栏样式 */
+.main-nav {
     position: fixed;
+    top: 0;
     width: 100%;
     z-index: 1000;
+    background: #f4e4bce6;
     backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--accent-color);
 }
 
-/* Banner樣式 */
-.hero {
-    height: 100vh;
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+.nav-container {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    padding: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.3em;
+    transition: color 0.3s;
+    font-family: var(--handwriting-font);
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* Hero Section 樣式 */
+.hero {
     position: relative;
+    width: 100%;
+    height: 100vh; /* 設定為視窗高度 */
     overflow: hidden;
 }
 
-.hero::after {
+.hero-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 確保圖片覆蓋整個容器且不變形 */
+}
+
+/* 確保內容在圖片上方 */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.content-backdrop {
+    display: inline-block;
+    padding: 30px 50px;
+    /* 半透明背景  background: rgba(0, 0, 0, 0.5);*/
+    border-radius: 15px;
+     /* 背景模糊效果 backdrop-filter: blur(2px); */
+}
+
+.hero-content h1 {
+    font-size: 6em; /* 放大主標題 */
+    color: #fff;
+    text-shadow: 
+        0 0 10px rgba(255, 87, 34, 0.8),
+        0 0 20px rgba(255, 87, 34, 0.5),
+        0 0 30px rgba(255, 87, 34, 0.3); /* 多層發光效果 */
+    margin-bottom: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    font-size: 4em; /* 放大副標題 */
+    color: #FFA500; /* 使用橙色 */
+    text-shadow: 
+        0 0 10px rgba(255, 165, 0, 0.8),
+        0 0 20px rgba(255, 165, 0, 0.5); /* 發光效果 */
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* 添加暗色遮罩使文字更清晰 */
+.swiper-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* 半透明黑色遮罩 */
+}
+
+/* 確保導航按鈕可見 */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+}
+
+/* 確保分頁指示器可見 */
+.swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ff5722;
+    opacity: 1;
+}
+
+/* 輪播指示器樣式 */
+.hero-slider .swiper-pagination {
+    bottom: 30px;
+    z-index: 4;
+}
+
+.hero-slider .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    opacity: 0.5;
+}
+
+.hero-slider .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #fff;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 3.5em;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.8em;
+    }
+
+    .content-backdrop {
+        padding: 20px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.5em;
+    }
+}
+
+/* 添加更多的裂痕装饰 */
+.crack-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* 边缘磨损效果 */
+.worn-edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(to right, rgba(196, 180, 143, 0.2), transparent 10%, transparent 90%, rgba(196, 180, 143, 0.2)),
+        linear-gradient(to bottom, rgba(196, 180, 143, 0.2), transparent 10%, transparent 90%, rgba(196, 180, 143, 0.2));
+    pointer-events: none;
+}
+
+/* 标题样式增强 */
+.section-title {
+    position: relative;
+    font-family: var(--handwriting-font);
+    color: var(--text-color);
+    text-shadow: 1px 1px 2px var(--shadow-color);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: var(--accent-color);
+    opacity: 0.3;
+}
+
+/* 添加褪色效果 */
+.fade-edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center,
+        transparent 60%,
+        rgba(196, 180, 143, 0.2) 100%
+    );
+    pointer-events: none;
+}
+
+/* 图片样式增强 */
+.swiper-slide img {
+    border: none;
+    box-shadow: 4px 4px 8px var(--shadow-color);
+    filter: sepia(20%);
+    position: relative;
+}
+
+.swiper-slide img::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/static/images/grid.png');
-    opacity: 0.3;
-    animation: grid-move 20s linear infinite;
+    background: rgba(196, 180, 143, 0.1);
+}
+
+/* 添加复古装饰元素 */
+.vintage-decoration {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    opacity: 0.1;
+    background-image: url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25,0 L50,25 L25,50 L0,25 Z' fill='%238b4513'/%3E%3C/svg%3E");
+}
+
+/* 營隊介紹區塊樣式 */
+.about {
+    position: relative;
+    padding: 100px 0;
+    background-color: #f4e4bce6; /* 米黃色背景 */
+    color: #333; /* 深色文字 */
+}
+
+.about-title {
+    font-size: 3.5em;
+    font-weight: bold;
+    margin-bottom: 50px;
+    text-align: left;
+    color: #333; /* 深色標題 */
+}
+
+.about-content {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 左側文字區塊 */
+.about-text {
+    flex: 1;
+    padding-right: 30px;
+}
+
+.greeting {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    color: #333; /* 深色問候語 */
+}
+
+.main-text {
+    margin-bottom: 40px;
+}
+
+.main-text p {
+    font-size: 1.2em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #333; /* 深色內文 */
+    text-align: justify;
+}
+
+.signature {
+    font-size: 1.4em;
+    margin-top: 40px;
+    color: #333; /* 深色簽名 */
+}
+
+/* 右側圖片區塊 */
+.about-image {
+    flex: 1;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 添加輕微陰影 */
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* 響應式設計 */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-text {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .about-title {
+        font-size: 2.8em;
+    }
+
+    .greeting {
+        font-size: 1.6em;
+    }
+
+    .main-text p {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .about {
+        padding: 60px 0;
+    }
+
+    .about-title {
+        font-size: 2.4em;
+    }
+}
+
+/* Gallery 区块样式 */
+.gallery {
+    padding: 80px 0;
+    background-color: #f4e4bce6;
+}
+
+.gallery .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: #333;
+    font-weight: bold;
+}
+
+.gallery-container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.gallery-slider {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+.gallery-slides {
+    position: relative;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: none;
+}
+
+.slide.active {
+    opacity: 1;
+    display: block;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 10;
+}
+
+.gallery-nav.prev {
+    left: 20px;
+}
+
+.gallery-nav.next {
+    right: 20px;
+}
+
+.gallery-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.dot.active {
+    background: white;
+}
+
+/* 活動介紹區塊樣式 */
+.activities {
+    padding: 60px 0;
+    background-color: #f4e4bce6;
+    position: relative;
+    overflow: hidden;
+}
+
+.activities .container {
+    max-width: 1800px; /* 增加最大寬度 */
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5em;
+}
+
+.activities-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* 增加兩行之間的間距 */
+}
+
+.activities-row {
+    display: flex;
+    justify-content: center; /* 置中對齊 */
+    gap: 50px; /* 增加圖片之間的間距 */
+}
+
+.activity-item {
+    flex: 0 0 550px; /* 固定寬度，讓圖片更大 */
+    max-width: 550px;
+}
+
+.activity-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9; /* 調整圖片比例 */
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.activity-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.activity-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.activity-description {
+    color: #fff;
+    padding: 40px; /* 增加文字內距 */
+    text-align: center;
+}
+
+.activity-description p {
+    font-size: 1.2em; /* 放大文字 */
+    line-height: 1.6;
+}
+
+.activity-item h3 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.4em; /* 放大標題 */
+    color: #333;
+}
+
+/* 懸停效果 */
+.activity-item:hover .activity-overlay {
+    opacity: 1;
+}
+
+.activity-item:hover img {
+    transform: scale(1.1);
+}
+
+/* 響應式設計 */
+@media (max-width: 1800px) {
+    .activity-item {
+        flex: 0 0 500px;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 1600px) {
+    .activity-item {
+        flex: 0 0 450px;
+        max-width: 450px;
+    }
+}
+
+/* 時間軸區塊樣式 */
+.timeline-section {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+}
+
+.timeline-section .section-title {
+    color: #ff5722;
+    text-shadow: 0 0 15px rgba(255, 87, 34, 0.6);
+    margin-bottom: 60px;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.timeline {
+    padding: 80px 0;
+    background-color: #000000;
+    position: relative;
+}
+
+.timeline .section-title {
+    color: #ffffff; /* 標題改為白色 */
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 2.5em;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: linear-gradient(to bottom, 
+        rgba(255, 87, 34, 0),
+        #ff5722 10%,
+        #ff5722 90%,
+        rgba(255, 87, 34, 0)
+    );
+    transform: translateX(-50%);
+    transform-origin: top;
+    animation: growLine 1.5s ease forwards;
+}
+
+@keyframes growLine {
+    from {
+        transform: translateX(-50%) scaleY(0);
+    }
+    to {
+        transform: translateX(-50%) scaleY(1);
+    }
+}
+
+/* 確保動畫元素初始狀態 */
+[data-aos] {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* 動畫完成後的狀態 */
+[data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.timeline-date {
+    color: #ffffff; /* 日期改為白色 */
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.timeline-content {
+    position: relative;
+    padding: 20px;
+}
+
+.timeline-content h3 {
+    color: #ffffff; /* 內容標題改為白色 */
+    font-size: 1.4em;
+    margin: 0;
+}
+
+/* 移除中間紅色線條相關的樣式 */
+.timeline-dot {
+    display: none;
+}
+
+/* 精彩回顧區塊樣式 */
+.gallery-section {
+    position: relative;
+    padding: 100px 0;
+    background-color: #f4e4bce6; /* 淺米色背景 */
+}
+
+.gallery-section .section-title {
+    color: #333; /* 深色標題 */
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    font-weight: bold;
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .gallery-section .section-title {
+        font-size: 2em;
+    }
+}
+
+/* 在head中添加Google Fonts連結 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700&family=Ma+Shan+Zheng&display=swap');
+
+/* 全局字體設定 */
+body {
+    font-family: var(--text-font);
+}
+
+/* 標題使用手寫字體 */
+.section-title, 
+.logo, 
+.nav-links a,
+.feature h3 {
+    font-family: var(--handwriting-font);
+}
+
+/* 關於區塊文字樣式 */
+.about-text p {
+    font-family: var(--handwriting-font);
+    font-size: 1.4em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.feature h3 {
+    font-size: 1.3em;
+    margin-top: 10px;
+}
+
+/* 導覽列樣式調整 */
+.logo {
+    font-size: 1.8em;
+    color: var(--accent-color);
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .about-text p {
+        font-size: 1.2em;
+    }
+    
+    .handwritten-note {
+        font-size: 1.2em;
+    }
+    
+    .logo {
+        font-size: 1.5em;
+    }
+    
+    .nav-links a {
+        font-size: 1.1em;
+    }
+}
+
+/* About 區塊樣式 */
+.about-content {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;  /* 改為頂部對齊 */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-image {
+    flex: 0 0 45%;  /* 固定寬度比例 */
+    position: relative;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 4px 4px 15px var(--shadow-color);
+    filter: sepia(20%);
+}
+
+.about-text-content {
+    flex: 0 0 50%;  /* 固定寬度比例 */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.about-text {
+    margin-bottom: 30px;
+}
+
+.about-text p {
+    font-family: var(--handwriting-font);
+    font-size: 1.4em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* 響應式設計 */
+@media (max-width: 968px) {
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-image,
+    .about-text-content {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 照片展示區塊樣式 */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+    margin: 0;
+    width: 100%;
+    background: transparent; /* 移除之前的半透明白色背景 */
+}
+
+.carousel-track {
+    display: flex;
+    width: calc(300px * 24);  /* 增加總寬度以容納更多照片 */
+    animation: scroll 60s linear infinite;  /* 增加動畫時間 */
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-300px * 12));  /* 調整滾動距離 */
+    }
+}
+
+.carousel-item {
+    flex: 0 0 300px;
+    padding: 0 10px;  /* 減少照片之間的間距 */
+}
+
+.polaroid {
+    background: white;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    height: 400px;
+}
+
+.polaroid:hover {
+    transform: scale(1.05);
+}
+
+.card-image {
+    height: 300px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-content h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.card-content p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* 調整 Swiper 容器高度 */
+.gallerySwiper {
+    width: 100%;
+    height: 450px; /* 調整高度 */
+    padding: 20px 0; /* 添加上下間距 */
+}
+
+.gallery-card {
+    position: relative;
+    width: 100%;
+    height: 400px; /* 調整卡片高度 */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 調整導航按鈕位置 */
+.swiper-button-next {
+    right: 5px;
+}
+
+.swiper-button-prev {
+    left: 5px;
+}
+
+/* 調整分頁指示點位置 */
+.swiper-pagination {
+    bottom: 0;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .gallerySwiper {
+        height: 350px;
+    }
+    
+    .gallery-card {
+        height: 300px;
+    }
+}
+
+.pricing {
+    padding: 80px 0;
+    background-color: #f4e4bce6;
+    position: relative;
+}
+
+.pricing .container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.pricing-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.price-card {
+    flex: 0 0 350px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 卡片懸停效果 */
+.price-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* 方案名稱樣式 */
+.plan-name {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* 價格樣式 */
+.price-tag {
+    font-size: 2.5em;
+    color: #ff6b6b;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.currency {
+    font-size: 0.5em;
+    vertical-align: super;
+}
+
+/* 報名按鈕容器 */
+.signup-button-container {
+    text-align: center;
+    margin-top: -25px; /* 讓按鈕往上移 */
+    position: relative;
+    z-index: 2;
+}
+
+/* 報名按鈕樣式 */
+.signup-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    background: linear-gradient(45deg, #ff6b6b, #ffc3a0);
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(255,107,107,0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 按鈕發光效果 */
+.signup-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255,255,255,0.2);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+/* 卡片裝飾效果 */
+.card-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
 }
 
 /* 動畫效果 */
-@keyframes grid-move {
-    from { transform: translateY(0); }
-    to { transform: translateY(100%); }
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
 }
 
-/* 其他區段樣式 */
-.section {
-    padding: 5rem 2rem;
+/* 特色方案強調 */
+.price-card.featured {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ffd3b6, #ffaaa5);
 }
 
-/* 更多樣式... */ 
+.price-card.premium {
+    background: linear-gradient(135deg, #a8e6cf, #dcedc1);
+}
+
+.price-card.vip {
+    background: linear-gradient(135deg, #ffd3b6, #ff8b94);
+}
+
+/* 卡片進入動畫 */
+[data-aos="fade-up"] {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+[data-aos="fade-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 按鈕懸停效果 */
+.signup-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255,107,107,0.4);
+    background: linear-gradient(45deg, #ff8b94, #ffd3b6);
+}
+
+/* 添加脈衝動畫 */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255,107,107,0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(255,107,107,0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255,107,107,0);
+    }
+}
+
+.signup-btn {
+    animation: pulse 2s infinite;
+}
+
+/* 視差滾動區塊樣式 */
+.parallax-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* 設定為全螢幕高度 */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/parallax-bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 1;
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.parallax-content h2 {
+    font-size: 4em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    letter-spacing: 2px;
+}
+
+.parallax-content p {
+    font-size: 2em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    line-height: 1.6;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .parallax-bg {
+        background-attachment: scroll;
+    }
+    
+    .parallax-content h2 {
+        font-size: 2.5em;
+    }
+    
+    .parallax-content p {
+        font-size: 1.4em;
+    }
+}
+
+/* 第二個視差滾動區塊樣式 */
+.parallax-section-2 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-section-2 .parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/parallax-bg-2.jpg'); /* 第二張背景圖片 */
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 1;
+}
+
+.parallax-section-2 .parallax-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.parallax-section-2 .parallax-content h2 {
+    font-size: 4em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    letter-spacing: 2px;
+}
+
+.parallax-section-2 .parallax-content p {
+    font-size: 2em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    line-height: 1.6;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .parallax-section-2 .parallax-bg {
+        background-attachment: scroll;
+    }
+    
+    .parallax-section-2 .parallax-content h2 {
+        font-size: 2.5em;
+    }
+    
+    .parallax-section-2 .parallax-content p {
+        font-size: 1.4em;
+    }
+}
+
+.footer {
+    position: relative;
+    background-color: #f4e4bce6; /* 改回原本的背景顏色 */
+    padding: 40px 0 80px 0;
+}
+
+.footer .container {
+    position: relative;
+}
+
+.footer-signature {
+    position: absolute;
+    bottom: -60px;
+    right: 0;
+    text-align: right;
+    z-index: 10;
+}
+
+.footer-note {
+    font-size: 0.9em;
+    opacity: 0.8;
+    font-style: italic;
+    margin-bottom: 5px;
+    color: #333333; /* 深灰色文字 */
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2em;
+    color: #ff6b6b; /* 溫暖的粉紅色簽名 */
+    margin-top: 5px;
+    display: block;
+}
+
+/* 漢堡選單按鈕 */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        background: rgba(244, 228, 188, 0.95);
+        flex-direction: column;
+        padding: 80px 20px;
+        transition: right 0.3s ease;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-container {
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+}
+
+/* 響應式網格系統 */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+}
+
+.col {
+    padding: 15px;
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .col {
+        flex: 0 0 100%;
+    }
+}
+
+/* 響應式圖片 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 響應式間距 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    section {
+        padding: 40px 0;
+    }
+
+    .section-title {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 30px 0;
+    }
+
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+}
+
+/* 活動卡片響應式設計 */
+@media (max-width: 992px) {
+    .activities-row {
+        flex-direction: column;
+    }
+
+    .activity-item {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+/* 價格卡片響應式設計 */
+@media (max-width: 992px) {
+    .pricing-cards {
+        flex-direction: column;
+    }
+
+    .price-card {
+        width: 100%;
+        margin: 15px 0;
+    }
+}
+
+/* 圖片畫廊響應式設計 */
+@media (max-width: 768px) {
+    .gallery-slider {
+        height: 300px;
+    }
+
+    .gallery-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+/* 關於我們區塊響應式設計 */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-text,
+    .about-image {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .about-image {
+        margin-top: 30px;
+    }
+}
+
+/* 時間軸響應式設計 */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-item {
+        padding-left: 70px;
+    }
+
+    .timeline-date {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: auto;
+        padding: 5px 0;
+    }
+
+    .timeline-content {
+        margin-left: 0;
+    }
+
+    .timeline-dot {
+        left: 22px;
+    }
+}
+
+/* 按鈕響應式設計 */
+@media (max-width: 768px) {
+    .signup-btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+}
+
+/* 視差滾動區塊響應式設計 */
+@media (max-width: 768px) {
+    .parallax-section {
+        height: 300px;
+    }
+
+    .parallax-content h2 {
+        font-size: 2em;
+    }
+
+    .parallax-content p {
+        font-size: 1.2em;
+    }
+}
+
+/* 頁尾響應式設計 */
+@media (max-width: 768px) {
+    .footer {
+        text-align: center;
+    }
+
+    .footer-signature {
+        font-size: 1.2em;
+    }
+
+    .footer-note {
+        font-size: 0.9em;
+    }
+} 

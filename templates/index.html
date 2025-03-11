@@ -1,80 +1,417 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>80年代風格企管營</title>
+    <title>80's 復古營隊活動</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </head>
 <body>
+    <div class="texture-overlay"></div>
+    <div class="fade-edge"></div>
+    <div class="age-overlay"></div>
+    <div class="worn-edge"></div>
     <!-- 導覽列 -->
-    <nav class="navbar">
-        <div class="nav-brand">企管營2024</div>
-        <div class="nav-links">
-            <a href="#about">關於營隊</a>
-            <a href="#courses">課程介紹</a>
-            <a href="#gallery">活動回顧</a>
-            <a href="#contact">聯絡我們</a>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">NCUBA CAMP</div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">營隊介紹</a></li>
+                <li><a href="#gallery">精彩回顧</a></li>
+                <li><a href="#activities">活動/課程內容</a></li>
+                <li><a href="#pricing">報名資訊</a></li>
+                <li><a href="#timeline">重要時程</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Banner區域 -->
-    <header class="hero" data-aos="fade-up">
-        <div class="hero-content">
-            <h1>2024企管營</h1>
-            <p>踏上商業管理的時光之旅</p>
-            <button class="cta-button">立即報名</button>
+    <!-- 主題Banner -->
+    <section id="home" class="hero">
+        <div class="swiper-container hero-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="{{ url_for('static', filename='images/hero/slide1.jpg') }}" alt="復古營隊照片1">
+                </div>
+
+
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
-    </header>
+        <div class="hero-content">
+            <div class="content-backdrop">
+                <h1 class="glitch" data-text="RETRO SUMMER CAMP">NCUBA SUMMER CAMP</h1>
+                <p class="hero-subtitle">希爾特之夢</p>
+                <div class="crt-lines"></div>
+            </div>
+        </div>
+    </section>
 
     <!-- 營隊介紹 -->
-    <section id="about" class="section" data-aos="fade-up">
-        <h2>關於企管營</h2>
-        <div class="about-content">
-            <p>在這裡放入營隊介紹文字...</p>
-        </div>
-    </section>
-
-    <!-- 課程介紹 -->
-    <section id="courses" class="section" data-aos="fade-up">
-        <h2>精彩課程</h2>
-        <div class="course-grid">
-            <div class="course-card">
-                <h3>商業策略</h3>
-                <p>學習企業策略規劃與決策...</p>
+    <section id="about" class="about">
+        <div class="container">
+            <h1 class="about-title">關於中央企管營</h1>
+            
+            <div class="about-content">
+                <!-- 左側文字區塊 -->
+                <div class="about-text">
+                    <p class="greeting">Hello,</p>
+                    <div class="main-text">
+                        <p>我們希望透過一系列商管的課程及活動，讓學員能夠在這之中探索自我。在這五天的營期中，我們將帶領大家學習不同的商管知識，跳脫框架，發現自己的熱情所在。</p>
+                        <p>我們精心設計了許多有趣的活動和課程，讓每位學員都能在輕鬆愉快的氛圍中學習和成長。在這裡，你不只是來學習，更是來創造屬於自己的難忘回憶。</p>
+                    </div>
+                    <p class="signature">誠摯期待與你相見</p>
+                </div>
+                
+                <!-- 右側圖片區塊 -->
+                <div class="about-image" data-aos="custom-pop" data-aos-duration="1000">
+                    <img src="{{ url_for('static', filename='images/about/camp-photo.jpg') }}" alt="營隊照片">
+                </div>
             </div>
-            <!-- 可以繼續添加更多課程卡片 -->
         </div>
     </section>
 
-    <!-- 活動回顧 -->
-    <section id="gallery" class="section" data-aos="fade-up">
-        <h2>精彩回顧</h2>
-        <div class="gallery-grid">
-            <!-- 這裡可以放入圖片連結 -->
+    <!-- 活動介紹結束後 -->
+    </section>
+
+
+
+    <!-- 照片展示區開始 -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">精彩回顧</h2>
+            <div class="gallery-container">
+                <div class="gallery-slider">
+                    <div class="gallery-slides">
+                        <div class="slide active">
+                            <img src="{{ url_for('static', filename='images/gallery/photo1.jpg') }}" alt="活動照片1">
+                        </div>
+                        <div class="slide">
+                            <img src="{{ url_for('static', filename='images/gallery/photo2.jpg') }}" alt="活動照片2">
+                        </div>
+                        <div class="slide">
+                            <img src="{{ url_for('static', filename='images/gallery/photo3.jpeg') }}" alt="活動照片3">
+                        </div>
+                        <div class="slide">
+                            <img src="{{ url_for('static', filename='images/gallery/photo4.JPG') }}" alt="活動照片4">
+                        </div>
+                        <div class="slide">
+                            <img src="{{ url_for('static', filename='images/gallery/photo5.jpg') }}" alt="活動照片5">
+                        </div>
+                        <div class="slide">
+                            <img src="{{ url_for('static', filename='images/gallery/photo6.jpg') }}" alt="活動照片6">
+                        </div>
+                    </div>
+                    <button class="gallery-nav prev">&lt;</button>
+                    <button class="gallery-nav next">&gt;</button>
+                    <div class="gallery-dots"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 視差滾動區塊 -->
+    <section class="parallax-section">
+        <div class="parallax-bg"></div>
+        <div class="parallax-content">
+            <h2>重返80年代</h2>
+            <p>體驗最純粹的復古風情</p>
+        </div>
+    </section>
+
+    <!-- 活動介紹 -->
+    <section id="activities" class="activities">
+        <div class="crack-decoration">
+            <div class="crack" style="--width: 170px; --rotation: 30deg; top: 30%; right: 25%;"></div>
+            <div class="crack" style="--width: 130px; --rotation: -40deg; bottom: 40%; left: 20%;"></div>
+            <div class="crack" style="--width: 150px; --rotation: 10deg; top: 70%; right: 35%;"></div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">活動/課程內容</h2>
+            <div class="activities-grid">
+                <!-- 第一行 -->
+                <div class="activities-row">
+                    <!-- 活動1 -->
+                    <div class="activity-item">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/activity1.jpeg') }}" alt="復古遊戲競賽">
+                            <div class="activity-overlay">
+                                <div class="activity-description">
+                                    <p>學習如何規劃自己的投資組合，並且在市場中實際操作，了解投資的風險與報酬。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>投資理財</h3>
+                    </div>
+                    
+                    <!-- 活動2 -->
+                    <div class="activity-item">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/activity2.jpg') }}" alt="80年代電影放映">
+                            <div class="activity-overlay">
+                                <div class="activity-description">
+                                    <p>規劃行銷策略，並且學習如何將想法落地執行，了解消費者需求，制定行銷計畫。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>行銷管理</h3>
+                        
+                    </div>
+
+                    <!-- 活動3 -->
+                    <div class="activity-item">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/activity3.jpg') }}" alt="復古音樂工作坊">
+                            <div class="activity-overlay">
+                                <div class="activity-description">
+                                    <p>透過實地參訪，了解企業的運作方式，學習如何將理論與實務結合，了解企業的營運模式。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>企業參訪</h3>
+                    </div>
+                </div>
+
+                <!-- 第二行 -->
+                <div class="activities-row">
+                    <!-- 活動4 -->
+                    <div class="activity-item">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/activity4.jpeg') }}" alt="復古攝影體驗">
+                            <div class="activity-overlay">
+                                <div class="activity-description">
+                                    <p>結合課程內容，分析企業案例，來提升學員的商業思維。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>專案競賽</h3>
+                    </div>
+
+                    <!-- 活動5 -->
+                    <div class="activity-item">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/activity5.jpg') }}" alt="復古時尚派對">
+                            <div class="activity-overlay">
+                                <div class="activity-description">
+                                    <p>參加主題派對，在復古音樂和裝飾中，重現懷舊年代的時尚魅力。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>主題派對</h3>
+                    </div>
+
+                    <!-- 活動6 -->
+                    <div class="activity-item">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activities/activity6.jpg') }}" alt="復古手作工坊">
+                            <div class="activity-overlay">
+                                <div class="activity-description">
+                                    <p>運用商業思維，學習如何解決問題，並且在有限的時間內完成任務。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>商管遊戲</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 報名價格 -->
+    <section id="pricing" class="pricing">
+        <div class="crack-decoration">
+            <div class="crack" style="--width: 180px; --rotation: 25deg; top: 20%; right: 15%;"></div>
+            <div class="crack" style="--width: 150px; --rotation: -30deg; bottom: 30%; left: 25%;"></div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">報名方案</h2>
+            <div class="pricing-cards">
+                <!-- 基礎方案 -->
+                <div class="price-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-header">
+                        <div class="plan-name">早鳥-個人優惠</div>
+                        <div class="price-tag">
+                            <span class="currency">NT$</span>
+                            <span class="amount">6,300/人</span>
+                        </div>
+                    </div>
+                    <div class="card-decoration"></div>
+                </div>
+
+                <!-- 進階方案 -->
+                <div class="price-card featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-header">
+                        <div class="plan-name">早鳥-兩人以上團報</div>
+                        <div class="price-tag">
+                            <span class="currency">NT$</span>
+                            <span class="amount">6,200/人</span>
+                        </div>
+                    </div>
+                    <div class="card-decoration"></div>
+                </div>
+
+                <!-- 豪華方案 -->
+                <div class="price-card premium" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-header">
+                        <div class="plan-name">一般報名</div>
+                        <div class="price-tag">
+                            <span class="currency">NT$</span>
+                            <span class="amount">6,500/人</span>
+                        </div>
+                    </div>
+                    <div class="card-decoration"></div>
+                </div>
+
+                <!-- VIP方案 -->
+                <div class="price-card vip" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-header">
+                        <div class="plan-name">中低收方案</div>
+                        <div class="price-tag">
+                            <span class="currency">NT$</span>
+                            <span class="amount">5,500/人</span>
+                        </div>
+                    </div>
+                    <div class="card-decoration"></div>
+                </div>
+            </div>
+            <!-- 報名按鈕 -->
+            <div class="signup-button-container">
+                <a href="https://forms.gle/NrAwX4jByzPHqmy19" class="signup-btn glow-effect" target="_blank">
+                    立即報名
+                    <span class="btn-hover-effect"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- 第二個視差滾動區塊 -->
+    <section class="parallax-section parallax-section-2">
+        <div class="parallax-bg"></div>
+        <div class="parallax-content">
+            <h2>穿越時空</h2>
+            <p>一起創造難忘的復古回憶</p>
+        </div>
+    </section>
+
+    <!-- 重要時程開始 -->
+    <section id="timeline" class="timeline">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-down" data-aos-duration="1000">重要時程</h2>
+            <div class="timeline">
+                <!-- 時間點1 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="0" data-aos-duration="1200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2/20 ~ 4/25</div>
+                    <div class="timeline-content">
+                        <h3>報名表單開放</h3>
+                    </div>
+                </div>
+
+                <!-- 時間點2 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">5/05 ~ 5/13</div>
+                    <div class="timeline-content">
+                        <h3>公布正取名單、正取繳費時程</h3>
+                    </div>
+                </div>
+
+                <!-- 時間點3 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">5/14 ~ 5/21</div>
+                    <div class="timeline-content">
+                        <h3>公布備取名單、備取繳費時程</h3>
+                    </div>
+                </div>
+
+                <!-- 時間點4 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">5/22</div>
+                    <div class="timeline-content">
+                        <h3>公布正式錄取名單</h3>
+                    </div>
+                </div>
+
+                <!-- 時間點5 -->
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="1600" data-aos-duration="1200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">7/02 ~ 7/05</div>
+                    <div class="timeline-content">
+                        <h3>營期時間</h3>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>聯絡資訊</h3>
-                <p>Email: example@email.com</p>
-                <p>電話: 02-XXXX-XXXX</p>
+        <div class="container">
+            <div class="footer-content">
+
+                <div class="footer-section">
+                    <h4>聯絡我們</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/2025ncubacamp/" class="social-link">Instagram</a>
+                        <a href="https://www.facebook.com/profile.php?id=61555965395302" class="social-link">Facebook</a>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>關注我們</h3>
-                <div class="social-links">
-                    <!-- 社群媒體連結 -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 NCUBA Summer Camp. All rights reserved.</p>
+                <div class="footer-signature">
+                    <p class="footer-note">Salute to all the partners of the past.</p>
+                    <p class="signature">- SMT</p>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    
+    <script>
+        // 初始化照片展示的 Swiper
+        var gallerySwiper = new Swiper('.gallerySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            centeredSlides: true,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+            // 設置合適的高度
+            height: 600,
+            autoHeight: true
+        });
+    </script>
+
+    <!-- 添加裝飾元素 -->
+    <div class="vintage-decoration" style="top: 50px; right: 50px;"></div>
+    <div class="vintage-decoration" style="bottom: 50px; left: 50px;"></div>
+
+    <!-- 在 body 結束標籤前引入 JavaScript -->
+    <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
 </body>
 </html> 
