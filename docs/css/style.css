@@ -613,43 +613,77 @@ body {
 }
 
 .timeline {
-    padding: 80px 0;
-    background-color: #000000;
+    padding: 4rem 0;
+    background-color: #f8f9fa;
+}
+
+.timeline-container {
+    max-width: 800px;
+    margin: 0 auto;
     position: relative;
 }
 
-.timeline .section-title {
-    color: #ffffff; /* 標題改為白色 */
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 2.5em;
-}
-
-.timeline::before {
+.timeline-container::before {
     content: '';
     position: absolute;
     left: 50%;
-    top: 0;
-    height: 100%;
-    width: 2px;
-    background: linear-gradient(to bottom, 
-        rgba(255, 87, 34, 0),
-        #ff5722 10%,
-        #ff5722 90%,
-        rgba(255, 87, 34, 0)
-    );
     transform: translateX(-50%);
-    transform-origin: top;
-    animation: growLine 1.5s ease forwards;
+    width: 2px;
+    height: 100%;
+    background-color: #007bff;
 }
 
-@keyframes growLine {
-    from {
-        transform: translateX(-50%) scaleY(0);
-    }
-    to {
-        transform: translateX(-50%) scaleY(1);
-    }
+.timeline-item {
+    margin-bottom: 3rem;
+    position: relative;
+    width: 50%;
+    padding-right: 2rem;
+}
+
+.timeline-item:nth-child(even) {
+    margin-left: 50%;
+    padding-right: 0;
+    padding-left: 2rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #007bff;
+}
+
+.timeline-item:nth-child(even)::before {
+    right: auto;
+    left: -6px;
+}
+
+.timeline-item .date {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-item .content {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.timeline-item .content h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-item .content p {
+    color: #666;
+    margin: 0;
 }
 
 /* 確保動畫元素初始狀態 */
@@ -662,34 +696,6 @@ body {
 [data-aos].aos-animate {
     opacity: 1;
     transform: translateY(0);
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.timeline-date {
-    color: #ffffff; /* 日期改為白色 */
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-.timeline-content {
-    position: relative;
-    padding: 20px;
-}
-
-.timeline-content h3 {
-    color: #ffffff; /* 內容標題改為白色 */
-    font-size: 1.4em;
-    margin: 0;
-}
-
-/* 移除中間紅色線條相關的樣式 */
-.timeline-dot {
-    display: none;
 }
 
 /* 精彩回顧區塊樣式 */
@@ -1282,37 +1288,77 @@ body {
 }
 
 .footer {
-    position: relative;
-    background-color: #f4e4bce6; /* 改回原本的背景顏色 */
-    padding: 40px 0 80px 0;
+    background-color: #2c3e50;
+    color: white;
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
 }
 
-.footer .container {
-    position: relative;
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-.footer-signature {
-    position: absolute;
-    bottom: -60px;
-    right: 0;
-    text-align: right;
-    z-index: 10;
+.footer-section h3 {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
 }
 
-.footer-note {
-    font-size: 0.9em;
-    opacity: 0.8;
-    font-style: italic;
-    margin-bottom: 5px;
-    color: #333333; /* 深灰色文字 */
+.footer-section p {
+    color: #ccc;
+    margin-bottom: 0.5rem;
 }
 
-.signature {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.2em;
-    color: #ff6b6b; /* 溫暖的粉紅色簽名 */
-    margin-top: 5px;
-    display: block;
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #007bff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-bottom p {
+    color: #ccc;
+    margin: 0;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .timeline-container::before {
+        left: 0;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 2rem;
+        padding-right: 0;
+        margin-left: 0;
+    }
+
+    .timeline-item::before {
+        left: -6px;
+    }
+
+    .timeline-item:nth-child(even) {
+        margin-left: 0;
+        padding-left: 2rem;
+    }
 }
 
 /* 漢堡選單按鈕 */
