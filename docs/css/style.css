@@ -1017,6 +1017,13 @@ body {
     padding: 0 20px;
 }
 
+.pricing .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5em;
+    color: var(--text-color);
+}
+
 .pricing-cards {
     display: flex;
     justify-content: center;
@@ -1055,11 +1062,28 @@ body {
 .price-tag {
     font-size: 2.5em;
     color: var(--text-color);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
 }
 
 .currency {
     font-size: 0.6em;
     vertical-align: super;
+}
+
+.amount {
+    font-weight: bold;
+}
+
+.per-person {
+    font-size: 0.4em;
+    color: #666;
+}
+
+.card-content {
+    padding: 20px 0;
 }
 
 .features {
@@ -1072,6 +1096,7 @@ body {
     padding: 10px 0;
     border-bottom: 1px solid #eee;
     color: var(--text-color);
+    font-size: 1.1em;
 }
 
 .features li:last-child {
@@ -1102,6 +1127,7 @@ body {
     border-radius: 8px;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    margin-top: 20px;
 }
 
 .register-btn:hover {
@@ -1133,6 +1159,7 @@ body {
     padding: 10px 0;
     border-bottom: 1px solid #eee;
     color: var(--text-color);
+    font-size: 1.1em;
 }
 
 .pricing-notes li:last-child {
